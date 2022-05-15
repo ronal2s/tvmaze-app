@@ -6,7 +6,7 @@ import ViewsKeys from "./src/enums/viewsKeys";
 import CONSTANTS from "./src/helpers/constants";
 import FavoritesView from "./src/views/favorites/favorites";
 import HomeView from "./src/views/home/home";
-import ShowInfoView from "./src/views/info/showInfo";
+import ShowInfoView from "./src/views/info/info";
 const Stack = createStackNavigator() as any;
 
 function App() {

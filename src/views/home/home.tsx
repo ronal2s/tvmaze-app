@@ -1,13 +1,13 @@
+import Icon from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import Icon from "@expo/vector-icons/Ionicons";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import SearchInput from "../../components/searchInput";
 import ShowsController from "../../controllers/showsController";
+import ViewsKeys from "../../enums/viewsKeys";
 import CONSTANTS from "../../helpers/constants";
 import TVShow from "../../models/tvShow";
 import ShowList from "./content/showList";
-import ViewsKeys from "../../enums/viewsKeys";
 
 let timer: any;
 function HomeView() {

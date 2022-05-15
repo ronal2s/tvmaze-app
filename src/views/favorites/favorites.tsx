@@ -1,5 +1,5 @@
 import { useFocusEffect } from "@react-navigation/native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import ShowsController from "../../controllers/showsController";
 import CONSTANTS from "../../helpers/constants";
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   noFavorite: {
     color: CONSTANTS.COLORS.WHITE,
-    opacity: 0.5
+    opacity: 0.5,
   },
 });
 

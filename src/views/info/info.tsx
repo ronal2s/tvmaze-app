@@ -1,3 +1,4 @@
+import Icon from "@expo/vector-icons/Ionicons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useMemo, useState } from "react";
 import {
@@ -6,11 +7,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import CachedPicture from "../../components/cachedPicture";
 import PillsCards from "../../components/pillsCards";
-import Icon from "@expo/vector-icons/Ionicons";
 import Spacer from "../../components/spacer";
 import { useEpisode } from "../../contexts/episodeContext";
 import ShowsController from "../../controllers/showsController";

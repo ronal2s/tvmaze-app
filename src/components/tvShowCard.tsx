@@ -1,7 +1,6 @@
 import { BlurView } from "expo-blur";
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import CONSTANTS from "../helpers/constants";
 import convertHexRGBA from "../helpers/convertHexRGBA";
 import cutText from "../helpers/cutText";
