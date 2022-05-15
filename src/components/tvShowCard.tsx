@@ -14,11 +14,6 @@ type TVShowCardProps = {
 };
 function TVShowCard({ show }: TVShowCardProps) {
   const summary = cutText(show.summary.replace(/(<([^>]+)>)/gi, ""), 80);
-  const [heartfilled, setHeartfilled] = useState(false);
-
-  const handleFavorite = () => {
-    setHeartfilled(!heartfilled);
-  };
 
   return (
     <View style={styles.container}>
@@ -44,15 +39,6 @@ function TVShowCard({ show }: TVShowCardProps) {
               <Text>{summary}</Text>
             </View>
           </View>
-          <Icon
-            name="heart"
-            size={16}
-            color={
-              heartfilled ? CONSTANTS.COLORS.HEART : CONSTANTS.COLORS.WHITE
-            }
-            style={styles.heart}
-            onPress={handleFavorite}
-          />
         </View>
       </BlurView>
     </View>

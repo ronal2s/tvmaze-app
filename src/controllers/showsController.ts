@@ -54,6 +54,35 @@ class ShowsController {
     const data = response.data as any[];
     return data as tvEpisode[];
   }
+
+  static async setFavorite(item: TVShow) {
+    const favorites = await AsyncStorage.getItem(StorageKeys.FAVORITES);
+    let favoritesArray = favorites ? JSON.parse(favorites) : [];
+    // Verify if item exists in favorites
+    const exists = favoritesArray.find((fav: TVShow) => fav.id === item.id);
+    if (exists) {
+      // Delete item from favorites
+      favoritesArray = favoritesArray.filter(
+        (fav: TVShow) => fav.id !== item.id
+      );
+      AsyncStorage.setItem(StorageKeys.FAVORITES, JSON.stringify(favoritesArray));
+      return;
+    }
+    const newFavorites = [...favoritesArray, item];
+    AsyncStorage.setItem(StorageKeys.FAVORITES, JSON.stringify(newFavorites));
+  }
+
+  static async getFavorites() {
+    const favorites = await AsyncStorage.getItem(StorageKeys.FAVORITES);
+    return favorites ? (JSON.parse(favorites) as TVShow[]) : [];
+  }
+
+  static async getFavorite(id: number) {
+    const favorites = await AsyncStorage.getItem(StorageKeys.FAVORITES);
+    return favorites
+      ? (JSON.parse(favorites) as TVShow[]).find((fav: TVShow) => fav.id === id)
+      : null;
+  }
 }
 
 export default ShowsController;

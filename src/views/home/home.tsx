@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import Icon from "@expo/vector-icons/Ionicons";
 import SearchInput from "../../components/searchInput";
 import ShowsController from "../../controllers/showsController";
 import CONSTANTS from "../../helpers/constants";

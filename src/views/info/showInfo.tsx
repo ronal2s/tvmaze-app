@@ -6,10 +6,11 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import CachedPicture from "../../components/cachedPicture";
 import PillsCards from "../../components/pillsCards";
+import Icon from "@expo/vector-icons/Ionicons";
 import Spacer from "../../components/spacer";
 import { useEpisode } from "../../contexts/episodeContext";
 import ShowsController from "../../controllers/showsController";
@@ -23,6 +24,7 @@ function ShowInfoView() {
   const route = useRoute();
   const { item } = route.params as { item: TVShow };
   const [loading, setLoading] = useState(false);
+  const [heartFilled, setHeartFilled] = useState(false);
   const [seasons, setSeasons] = useState<any>({});
   const seasonsTitles = useMemo(() => {
     return Object.keys(seasons);
@@ -41,6 +43,14 @@ function ShowInfoView() {
     fetchSeasons();
   }, [item]);
 
+  useEffect(() => {
+    ShowsController.getFavorite(item.id).then((data) => {
+      if (data) {
+        setHeartFilled(true);
+      }
+    });
+  }, []);
+
   const fetchSeasons = async () => {
     setLoading(true);
     const seasons = await ShowsController.fetchSeasons(item.id);
@@ -51,6 +61,11 @@ function ShowInfoView() {
     }
     setLoading(false);
     setSeasons(data);
+  };
+
+  const handleFavorite = () => {
+    setHeartFilled(!heartFilled);
+    ShowsController.setFavorite(item);
   };
 
   const openEpisode = (episode: tvEpisode) => {
@@ -67,7 +82,19 @@ function ShowInfoView() {
       )}
       <View style={styles.content}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{item.name}</Text>
+          <View style={styles.row}>
+            <Text style={styles.title}>{item.name}</Text>
+
+            <Icon
+              name="heart"
+              size={16}
+              color={
+                !heartFilled ? CONSTANTS.COLORS.WHITE : CONSTANTS.COLORS.HEART
+              }
+              style={styles.heart}
+              onPress={handleFavorite}
+            />
+          </View>
           <PillsCards
             items={[item.language]}
             backgroundColor={CONSTANTS.COLORS.BLUE}
@@ -122,6 +149,10 @@ const styles = StyleSheet.create({
   content: {
     padding: 10,
   },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   titleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -164,6 +195,9 @@ const styles = StyleSheet.create({
   },
   episodeContainer: {
     marginVertical: 2,
+  },
+  heart: {
+    marginLeft: 10,
   },
 });
 
