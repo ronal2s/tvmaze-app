@@ -12,7 +12,9 @@ type TVShowCardProps = {
   show: TVShow;
 };
 function TVShowCard({ show }: TVShowCardProps) {
-  const summary = cutText(show.summary.replace(/(<([^>]+)>)/gi, ""), 80);
+  const summary = show.summary
+    ? cutText(show.summary.replace(/(<([^>]+)>)/gi, ""), 80)
+    : "No summary available";
 
   return (
     <View style={styles.container}>

@@ -39,7 +39,7 @@ type TVShow = {
     medium: string;
     original: string;
   } | null;
-  summary: string;
+  summary: string | null;
   _links: {
     self: {
       href: string;

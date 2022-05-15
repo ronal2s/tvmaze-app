@@ -12,7 +12,7 @@ type tvEpisode = {
     medium: string;
     original: string;
   } | null;
-  summary: string;
+  summary: string | null;
 };
 
 

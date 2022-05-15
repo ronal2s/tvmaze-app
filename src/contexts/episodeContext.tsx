@@ -16,7 +16,9 @@ const ShowEpisodeContext = createContext<EpisodeContextProps>({
 export default function EpisodeProvider({ children }: { children?: any }) {
   const [episode, setEpisode] = useState<tvEpisode | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const summary = episode?.summary.replace(/(<([^>]+)>)/gi, "");
+  const summary = episode?.summary
+    ? episode?.summary.replace(/(<([^>]+)>)/gi, "")
+    : "No summary available";
 
   const open = (episode: tvEpisode) => {
     setEpisode(episode);
