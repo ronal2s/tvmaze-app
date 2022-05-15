@@ -4,6 +4,7 @@ import React from "react";
 import EpisodeProvider from "./src/contexts/episodeContext";
 import ViewsKeys from "./src/enums/viewsKeys";
 import CONSTANTS from "./src/helpers/constants";
+import FavoritesView from "./src/views/favorites/favorites";
 import HomeView from "./src/views/home/home";
 import ShowInfoView from "./src/views/info/showInfo";
 const Stack = createStackNavigator() as any;
@@ -24,6 +25,7 @@ function App() {
         >
           <Stack.Screen name={ViewsKeys.Home} component={HomeView} />
           <Stack.Screen name={ViewsKeys.TVShowInfo} component={ShowInfoView} />
+          <Stack.Screen name={ViewsKeys.Favorites} component={FavoritesView} />
         </Stack.Navigator>
       </NavigationContainer>
     </EpisodeProvider>

@@ -13,8 +13,8 @@ import TVShow from "../../../models/tvShow";
 
 type ShowListProps = {
   shows: TVShow[];
-  onEndReached: () => void;
-  loading: boolean;
+  onEndReached?: () => void;
+  loading?: boolean;
 };
 function ShowList({ shows, loading, onEndReached }: ShowListProps) {
   const navigation = useNavigation<any>();

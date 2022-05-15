@@ -1,6 +1,7 @@
 import { BlurView } from "expo-blur";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import CONSTANTS from "../helpers/constants";
 import convertHexRGBA from "../helpers/convertHexRGBA";
 import cutText from "../helpers/cutText";
@@ -13,6 +14,11 @@ type TVShowCardProps = {
 };
 function TVShowCard({ show }: TVShowCardProps) {
   const summary = cutText(show.summary.replace(/(<([^>]+)>)/gi, ""), 80);
+  const [heartfilled, setHeartfilled] = useState(false);
+
+  const handleFavorite = () => {
+    setHeartfilled(!heartfilled);
+  };
 
   return (
     <View style={styles.container}>
@@ -38,6 +44,15 @@ function TVShowCard({ show }: TVShowCardProps) {
               <Text>{summary}</Text>
             </View>
           </View>
+          <Icon
+            name="heart"
+            size={16}
+            color={
+              heartfilled ? CONSTANTS.COLORS.HEART : CONSTANTS.COLORS.WHITE
+            }
+            style={styles.heart}
+            onPress={handleFavorite}
+          />
         </View>
       </BlurView>
     </View>
@@ -57,6 +72,11 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
+  },
+  heart: {
+    position: "absolute",
+    right: 10,
+    bottom: 10,
   },
   picture: {
     flex: 1,

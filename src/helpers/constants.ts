@@ -15,7 +15,8 @@ const CONSTANTS = {
     LIGHT_GRAY: "#fafafa",
     DARK_GRAY: "#1c1c1c",
     BLUE: '#4a60ff',
-    PLACEHOLDER_INPUT: '#7f7f7f'
+    PLACEHOLDER_INPUT: '#7f7f7f',
+    HEART: '#ff3d34',
   },
 };
 

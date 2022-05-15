@@ -1,15 +1,19 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import SearchInput from "../../components/searchInput";
 import ShowsController from "../../controllers/showsController";
 import CONSTANTS from "../../helpers/constants";
 import TVShow from "../../models/tvShow";
 import ShowList from "./content/showList";
+import ViewsKeys from "../../enums/viewsKeys";
 
 let timer: any;
 function HomeView() {
   const [shows, setShows] = useState<TVShow[]>([]);
   const [searchText, setSearchText] = useState("");
+  const navigation = useNavigation<any>();
   const [pagination, setPagination] = useState({
     from: 0,
     to: 10,
@@ -20,6 +24,18 @@ function HomeView() {
 
   useEffect(() => {
     fetchData();
+    navigation.setOptions({
+      headerRight: () => (
+        <View style={styles.headerRight}>
+          <Icon
+            name="heart"
+            size={16}
+            color={CONSTANTS.COLORS.WHITE}
+            onPress={openFavorites}
+          />
+        </View>
+      ),
+    });
   }, []);
 
   useEffect(() => {
@@ -34,6 +50,10 @@ function HomeView() {
       searchData();
     }, 500);
   }, [searchText]);
+
+  const openFavorites = () => {
+    navigation.navigate(ViewsKeys.Favorites);
+  };
 
   const searchData = async () => {
     ShowsController.search(searchText).then((data) => {
@@ -95,6 +115,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: CONSTANTS.COLORS.DARK_GRAY,
     flex: 1,
+  },
+  headerRight: {
+    marginRight: 10,
   },
 });
 
