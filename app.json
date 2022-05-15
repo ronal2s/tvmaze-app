@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ronal2s.tvmaze"
     },
     "web": {
       "favicon": "./assets/favicon.png"
