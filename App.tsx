@@ -1,12 +1,11 @@
-import {
-    NavigationContainer
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import EpisodeProvider from "./src/contexts/episodeContext";
 import ViewsKeys from "./src/enums/viewsKeys";
 import CONSTANTS from "./src/helpers/constants";
 import HomeView from "./src/views/home/home";
-import ShowInfoView from "./src/views/showInfo/showInfo";
+import ShowInfoView from "./src/views/info/showInfo";
 const Stack = createStackNavigator() as any;
 
 function App() {
@@ -15,17 +14,19 @@ function App() {
     headerTintColor: CONSTANTS.COLORS.WHITE,
     headerShadowVisible: false,
   };
-  
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={extendedHeaderTheme}
-        initialRouteName={ViewsKeys.Home}
-      >
-        <Stack.Screen name={ViewsKeys.Home} component={HomeView} />
-        <Stack.Screen name={ViewsKeys.TVShowInfo} component={ShowInfoView} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <EpisodeProvider>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={extendedHeaderTheme}
+          initialRouteName={ViewsKeys.Home}
+        >
+          <Stack.Screen name={ViewsKeys.Home} component={HomeView} />
+          <Stack.Screen name={ViewsKeys.TVShowInfo} component={ShowInfoView} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </EpisodeProvider>
   );
 }
 

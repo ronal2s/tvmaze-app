@@ -18,11 +18,15 @@ function TVShowCard({ show }: TVShowCardProps) {
     <View style={styles.container}>
       <BlurView intensity={50}>
         <View style={styles.row}>
-          {show.image && (
+          {show.image ? (
             <CachedPicture
               source={{ uri: show.image.medium }}
               style={styles.picture}
             />
+          ) : (
+            <View style={styles.emptyBox}>
+              <Text style={styles.noPicture}>No picture</Text>
+            </View>
           )}
           <View style={styles.content}>
             <View style={styles.titleContainer}>
@@ -55,10 +59,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   picture: {
-    width: CONSTANTS.DIMENSIONS.WIDTH * 0.3,
     flex: 1,
+    width: CONSTANTS.DIMENSIONS.WIDTH * 0.3,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
+  },
+  emptyBox: {
+    width: CONSTANTS.DIMENSIONS.WIDTH * 0.3,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: CONSTANTS.COLORS.BLUE,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noPicture: {
+    color: "white",
+    opacity: 0.7,
   },
   titleContainer: {
     borderColor: CONSTANTS.COLORS.BLUE,

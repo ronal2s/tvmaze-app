@@ -3,6 +3,8 @@ import axios from "axios";
 import StorageKeys from "../enums/storageKeys";
 import CONSTANTS from "../helpers/constants";
 import TVShow from "../models/tvShow";
+import TVSeason from "../models/tvSeason";
+import tvEpisode from "../models/tvEpisode";
 
 type FetchType = {
   page?: number;
@@ -36,7 +38,21 @@ class ShowsController {
     const url = `${CONSTANTS.API_URL}/search/shows?q=${text}`;
     const response = await axios.get(url);
     const data = response.data as any[];
-    return data.map(item => item.show) as TVShow[]
+    return data.map((item) => item.show) as TVShow[];
+  }
+
+  static async fetchSeasons(id: number) {
+    const url = `${CONSTANTS.API_URL}/shows/${id}/seasons`;
+    const response = await axios.get(url);
+    const data = response.data as any[];
+    return data as TVSeason[];
+  }
+
+  static async fetchEpisodes(id: number) {
+    const url = `${CONSTANTS.API_URL}/seasons/${id}/episodes`;
+    const response = await axios.get(url);
+    const data = response.data as any[];
+    return data as tvEpisode[];
   }
 }
 
