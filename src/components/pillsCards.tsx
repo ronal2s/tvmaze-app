@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import CONSTANTS from "../helpers/constants";
 import convertHexRGBA from "../helpers/convertHexRGBA";
 import Spacer from "./spacer";
@@ -17,9 +17,9 @@ function PillsCards({
 }) {
   const renderItem = ({ item }: { item: string }) => {
     return (
-      <View style={[styles.item, { backgroundColor,borderColor }]}>
+      <TouchableHighlight style={[styles.item, { backgroundColor,borderColor }]}>
         <Text style={{ color: textColor }}>{item}</Text>
-      </View>
+      </TouchableHighlight>
     );
   };
   return (
