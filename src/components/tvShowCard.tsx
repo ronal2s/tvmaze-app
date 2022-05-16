@@ -32,7 +32,7 @@ function TVShowCard({ show }: TVShowCardProps) {
           )}
           <View style={styles.content}>
             <View style={styles.titleContainer}>
-              <Text style={styles.name}>{show.name}</Text>
+              <Text style={styles.name}>{cutText(show.name,30)}</Text>
             </View>
             <PillsCards items={show.genres} />
 

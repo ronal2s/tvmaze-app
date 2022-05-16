@@ -15,6 +15,7 @@ import Spacer from "../../components/spacer";
 import { useEpisode } from "../../contexts/episodeContext";
 import ShowsController from "../../controllers/showsController";
 import CONSTANTS from "../../helpers/constants";
+import cutText from "../../helpers/cutText";
 import tvEpisode from "../../models/tvEpisode";
 import TVShow from "../../models/tvShow";
 
@@ -83,8 +84,7 @@ function ShowInfoView() {
       <View style={styles.content}>
         <View style={styles.titleContainer}>
           <View style={styles.row}>
-            <Text style={styles.title}>{item.name}</Text>
-
+            <Text style={styles.title}>{cutText(item.name, 30)}</Text>
             <Icon
               name="heart"
               size={16}
