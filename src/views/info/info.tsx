@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    flexWrap: 'wrap',
   },
   title: {
     fontWeight: "bold",
